@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai'
+import { CirclePlus } from 'lucide-react'
 import Papa from 'papaparse'
 import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
@@ -45,13 +46,19 @@ export const FileUploader = () => {
 	})
 
 	return (
-		<div className={isOpen ? '' : 'hidden'} {...getRootProps()}>
-			<input {...getInputProps()} />
-			{isDragActive ? (
-				<p>Drop the file here...</p>
-			) : (
-				<p>Drag & drop CSV here, or click</p>
-			)}
-		</div>
+		<>
+			<div
+				className={`${
+					isOpen ? '' : 'hidden'
+				} h-12 rounded-lg bg-[#E9E8EF] w-32 z-50 flex justify-center items-center cursor-pointer transition-all hover:bg-[#cecdd3]`}
+				{...getRootProps()}
+			>
+				<input {...getInputProps()} />
+				<div className='flex justify-center items-center gap-2'>
+					<h2 className='font-medium text-xl'>Add</h2>
+					<CirclePlus />
+				</div>
+			</div>
+		</>
 	)
 }

@@ -1,37 +1,94 @@
-import { RechartsDevtools } from '@recharts/devtools'
 import { useAtom } from 'jotai'
-import { useMemo } from 'react'
-import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from 'recharts'
-import { currentPlayingFile } from '../state/state'
-import type { ChartType } from '../types/chartTypes'
+import { useEffect, useRef } from 'react'
+import uPlot from 'uplot'
+import 'uplot/dist/uPlot.min.css'
+import { currentPlayingFile, speed } from '../state/state'
 import { getData } from '../utils/getData'
 
-interface IType {
-	type: ChartType
+interface INumberData {
+	time: number
+	wx: number
+	wy: number
+	wz: number
+	absolute: number
 }
 
-export const Chart = ({ type }: IType) => {
+export const Chart = () => {
 	const [currentFile] = useAtom(currentPlayingFile)
-	const data = useMemo(() => {
-		return getData(currentFile).map(obj => {
-			return Object.fromEntries(
-				Object.entries(obj).map(([key, value]) => [key, Number(value)])
-			)
-		})
+	const [currentSpeed] = useAtom(speed)
+
+	const uPlotInst = useRef<uPlot | null>(null)
+
+	const syncTime = useRef<number>(0)
+	const frameId = useRef<number>()
+
+	function converter(data: INumberData[]) {
+		const time = data.map(value => Number(value.time))
+		const wx = data.map(value => Number(value.wx))
+		const wy = data.map(value => Number(value.wy))
+		const wz = data.map(value => Number(value.wz))
+		return [time, wx, wy, wz]
+	}
+
+	const chartRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		if (!chartRef.current) return
+
+		const opts: uPlot.Options = {
+			width: chartRef.current.clientWidth,
+			height: 300,
+			cursor: {
+				drag: { x: true, y: false },
+			},
+			scales: {
+				x: { time: false },
+			},
+			series: [
+				{},
+				{
+					label: 'wx',
+					stroke: '#ffe924f0',
+					width: 2,
+				},
+				{
+					label: 'wy',
+					stroke: '#2453ffe8',
+					width: 2,
+				},
+				{
+					label: 'wz',
+					stroke: '#48ff24e8',
+					width: 2,
+				},
+			],
+			axes: [
+				{
+					stroke: '#000000',
+					grid: { stroke: '#aba9a9' },
+				},
+				{
+					stroke: '#000000',
+					grid: { stroke: '#b3b1b1' },
+				},
+			],
+		}
+		uPlotInst.current = new uPlot(
+			opts,
+			converter(getData(currentFile)),
+			chartRef.current
+		)
+	}, [])
+
+	useEffect(() => {
+		if (uPlotInst.current) {
+			uPlotInst.current?.setData(converter(getData(currentFile)))
+		}
 	}, [currentFile])
 
 	return (
-		<LineChart
-			style={{ width: '100%', aspectRatio: 1.818, maxWidth: 400 }}
-			responsive
-			data={data}
-		>
-			<CartesianGrid />
-			<Line dataKey={type} strokeWidth={0.2} />
-			<XAxis dataKey='time' />
-			<YAxis />
-			<Legend />
-			<RechartsDevtools />
-		</LineChart>
+		<div>
+			<div ref={chartRef}></div>
+		</div>
 	)
 }

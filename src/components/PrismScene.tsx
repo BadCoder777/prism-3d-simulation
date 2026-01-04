@@ -3,7 +3,7 @@ import { PrismObject } from './PrismObject'
 
 export const PrismScene = () => {
 	return (
-		<Canvas className='h-screen'>
+		<Canvas>
 			<PrismObject />
 		</Canvas>
 	)
