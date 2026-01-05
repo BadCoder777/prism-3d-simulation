@@ -50,7 +50,7 @@ export const FileUploader = () => {
 			<div
 				className={`${
 					isOpen ? '' : 'hidden'
-				} h-12 rounded-lg bg-[#E9E8EF] w-32 z-50 flex justify-center items-center cursor-pointer transition-all hover:bg-[#cecdd3]`}
+				} h-12 rounded-lg bg-[#08ABF1] w-32 z-50 flex justify-center items-center cursor-pointer transition-all hover:bg-[#0794d0]`}
 				{...getRootProps()}
 			>
 				<input {...getInputProps()} />

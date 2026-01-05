@@ -2,38 +2,27 @@ import { useAtom } from 'jotai'
 import { useEffect, useRef } from 'react'
 import uPlot from 'uplot'
 import 'uplot/dist/uPlot.min.css'
-import { currentPlayingFile, speed } from '../state/state'
+import { currentPlayingFile, isCompareChartOpen } from '../state/state'
+import { converter } from '../utils/dataForChartConverter'
 import { getData } from '../utils/getData'
 
-interface INumberData {
-	time: number
-	wx: number
-	wy: number
-	wz: number
-	absolute: number
+interface IData {
+	data: number[][]
 }
 
-export const Chart = () => {
+export const Chart = ({ data }: IData) => {
 	const [currentFile] = useAtom(currentPlayingFile)
-	const [currentSpeed] = useAtom(speed)
+
+	const [isComChartOpen] = useAtom(isCompareChartOpen)
 
 	const uPlotInst = useRef<uPlot | null>(null)
-
-	const syncTime = useRef<number>(0)
-	const frameId = useRef<number>(0)
-
-	function converter(data) {
-		const time = data.map(value => Number(value.time))
-		const wx = data.map(value => Number(value.wx))
-		const wy = data.map(value => Number(value.wy))
-		const wz = data.map(value => Number(value.wz))
-		return [time, wx, wy, wz]
-	}
 
 	const chartRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
 		if (!chartRef.current) return
+
+		if (uPlotInst.current) uPlotInst.current.destroy()
 
 		const opts: uPlot.Options = {
 			width: chartRef.current.clientWidth,
@@ -73,12 +62,9 @@ export const Chart = () => {
 				},
 			],
 		}
-		uPlotInst.current = new uPlot(
-			opts,
-			converter(getData(currentFile)),
-			chartRef.current
-		)
-	}, [])
+		// @ts-ignore
+		uPlotInst.current = new uPlot(opts, data, chartRef.current)
+	}, [isComChartOpen])
 
 	useEffect(() => {
 		if (uPlotInst.current) {
@@ -87,7 +73,11 @@ export const Chart = () => {
 	}, [currentFile])
 
 	return (
-		<div>
+		<div
+			className={`${
+				isComChartOpen ? 'w-[69%]' : 'w-full'
+			} bg-[#E9E8EF] rounded-3xl h-[34%] w-full`}
+		>
 			<div ref={chartRef}></div>
 		</div>
 	)
