@@ -20,9 +20,9 @@ export const Chart = () => {
 	const uPlotInst = useRef<uPlot | null>(null)
 
 	const syncTime = useRef<number>(0)
-	const frameId = useRef<number>()
+	const frameId = useRef<number>(0)
 
-	function converter(data: INumberData[]) {
+	function converter(data) {
 		const time = data.map(value => Number(value.time))
 		const wx = data.map(value => Number(value.wx))
 		const wy = data.map(value => Number(value.wy))

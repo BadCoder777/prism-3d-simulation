@@ -38,6 +38,7 @@ export const ControlPanel = () => {
 				<div
 					className='transition-all hover:bg-[#E9E8EF] p-2 rounded-lg cursor-pointer'
 					onClick={() => {
+						// @ts-ignore
 						mixerRef.current._actions.forEach(action => {
 							action.paused = !action.paused
 						})
