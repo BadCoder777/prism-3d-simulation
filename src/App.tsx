@@ -64,7 +64,7 @@ export const App = () => {
 				<div className='h-[59%] w-[73%] bg-[#E9E8EF] rounded-xl mb-6 shadow-lg relative'>
 					{currentFile != '' && <PrismScene />}
 					<ControlPanel />
-					<div className='z-50 absolute left-3 bottom-3 flex gap-4'>
+					<div className='z-50 absolute left-6 bottom-3 flex gap-4'>
 						<div
 							className='transition-all w-36 h-12 rounded-full flex justify-center items-center gap-2 cursor-pointer bg-[#08ABF1] hover:bg-[#0794d0]'
 							onClick={() => {

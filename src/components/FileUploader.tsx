@@ -16,6 +16,14 @@ export const FileUploader = () => {
 
 			Papa.parse(file, {
 				header: true,
+				transformHeader: (header, index) => {
+					if (index === 0) return 'time'
+					if (index === 1) return 'wx'
+					if (index === 2) return 'wy'
+					if (index === 3) return 'wz'
+					if (index === 4) return 'absolute'
+					return header
+				},
 				skipEmptyLines: true,
 
 				complete: result => {
