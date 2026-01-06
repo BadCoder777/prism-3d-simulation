@@ -10,6 +10,7 @@ export const CompareChart = () => {
 	const [currentFile] = useAtom(currentPlayingFile)
 
 	const [args] = useAtom(chartArguments)
+	const myDivRef = useRef<HTMLDivElement>(null)
 	const [I_x, I_y, I_z] = useMemo(() => {
 		// @ts-ignore
 		return calcIMoments([args.a, args.b, args.c, args.m])
@@ -26,7 +27,7 @@ export const CompareChart = () => {
 
 		const opts: uPlot.Options = {
 			width: compareChartRef.current.clientWidth,
-			height: 300,
+			height: myDivRef.current.clientHeight,
 			cursor: {
 				drag: { x: true, y: false },
 			},
@@ -86,7 +87,12 @@ export const CompareChart = () => {
 	}, [args, I_x, I_y, I_z])
 
 	return (
-		<div className='bg-[#E9E8EF] rounded-3xl w-[40%] pb-5'>
+		<div
+			ref={myDivRef}
+			className={`${
+				currentFile != '' ? 'w-[47.5%]' : 'w-[96%] left-6'
+			} bg-[#E9E8EF] h-[37%] rounded-3xl absolute left-6 pb-5`}
+		>
 			<div ref={compareChartRef}></div>
 		</div>
 	)

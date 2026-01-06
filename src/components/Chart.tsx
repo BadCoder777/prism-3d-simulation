@@ -19,6 +19,8 @@ export const Chart = ({ data }: IData) => {
 
 	const chartRef = useRef<HTMLDivElement>(null)
 
+	const divRef = useRef<HTMLDivElement>(null)
+
 	useEffect(() => {
 		if (!chartRef.current) return
 
@@ -26,7 +28,7 @@ export const Chart = ({ data }: IData) => {
 
 		const opts: uPlot.Options = {
 			width: chartRef.current.clientWidth,
-			height: 300,
+			height: divRef.current.clientHeight,
 			cursor: {
 				drag: { x: true, y: false },
 			},
@@ -74,9 +76,10 @@ export const Chart = ({ data }: IData) => {
 
 	return (
 		<div
+			ref={divRef}
 			className={`${
-				isComChartOpen ? 'w-[57%]' : 'w-[97%] left-6'
-			} bg-[#E9E8EF] rounded-3xl absolute right-6 pb-5`}
+				isComChartOpen ? 'w-[47.5%]' : 'w-[96%] left-6'
+			} bg-[#E9E8EF] h-[37%] rounded-3xl absolute right-6 pb-5`}
 		>
 			<div ref={chartRef}></div>
 		</div>
