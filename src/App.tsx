@@ -72,7 +72,7 @@ export const App = () => {
 							}}
 						>
 							<ChartSpline />
-							<h2>Compare</h2>
+							<h2>Model</h2>
 						</div>
 						{isArgs && (
 							<div
