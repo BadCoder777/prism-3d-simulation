@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { Check } from 'lucide-react'
+import { Check, CircleX } from 'lucide-react'
 import { useMemo } from 'react'
 import {
 	chartArguments,
@@ -12,7 +12,7 @@ import { InputData } from './InputData'
 export const ComparePopup = () => {
 	const [comArguments, setArguments] = useAtom(compareArguments)
 	const [, setChartArgs] = useAtom(chartArguments)
-	const [, setIsOpen] = useAtom(isComparePopupOpen)
+	const [isOpen, setIsOpen] = useAtom(isComparePopupOpen)
 	const [isChartOpen, setIsChartOpen] = useAtom(isCompareChartOpen)
 
 	const handleChange = e => {
@@ -126,6 +126,14 @@ export const ComparePopup = () => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className='absolute top-12 left-12 grid grid-cols-2 gap-4 bg-white rounded-2xl p-3 shadow-md shadow-[#424141] z-50 text-center justify-center pt-14'>
+				<button
+					className='z-20 cursor-pointer p-1 rounded-full absolute bg-white right-1 top-1'
+					onClick={() => {
+						setIsOpen(false)
+					}}
+				>
+					<CircleX />
+				</button>
 				<h1 className='text-2xl absolute top-2 left-[41%]'>Data:</h1>
 				{inputArr.map((item, i) => {
 					return (

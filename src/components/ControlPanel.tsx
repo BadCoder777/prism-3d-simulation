@@ -25,7 +25,7 @@ export const ControlPanel = () => {
 	const inputRef = useRef(null)
 
 	return (
-		<div className='flex h-12 gap-4 absolute bg-white rounded-xl z-50 bottom-3 right-[40%]'>
+		<div className='flex h-12 gap-4 absolute bg-white rounded-xl z-50 bottom-3 left-[40%]'>
 			<div className='transition-all flex p-2 justify-center items-center gap-1'>
 				<div
 					className='transition-all hover:bg-[#E9E8EF] p-2 rounded-lg cursor-pointer'
