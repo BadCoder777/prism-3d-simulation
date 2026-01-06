@@ -43,7 +43,7 @@ export const App = () => {
 		// @ts-ignore
 		chartArgs.dt &&
 		// @ts-ignore
-		chartArgs.duration
+		chartArgs.time
 
 	useEffect(() => {
 		setList(Object.keys(localStorage))

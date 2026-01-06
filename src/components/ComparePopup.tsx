@@ -1,11 +1,13 @@
 import { useAtom } from 'jotai'
 import { Check } from 'lucide-react'
+import { useMemo } from 'react'
 import {
 	chartArguments,
 	compareArguments,
 	isCompareChartOpen,
 	isComparePopupOpen,
 } from '../state/state'
+import { InputData } from './InputData'
 
 export const ComparePopup = () => {
 	const [comArguments, setArguments] = useAtom(compareArguments)
@@ -33,7 +35,7 @@ export const ComparePopup = () => {
 			comArguments.wy != '' &&
 			comArguments.wz != '' &&
 			comArguments.dt != '' &&
-			comArguments.duration != ''
+			comArguments.time != ''
 		) {
 			setChartArgs({
 				a: +comArguments.a,
@@ -44,7 +46,7 @@ export const ComparePopup = () => {
 				wy: +comArguments.wy,
 				wz: +comArguments.wz,
 				dt: +comArguments.dt,
-				duration: +comArguments.duration,
+				time: +comArguments.time,
 			})
 			setIsChartOpen(true)
 		} else {
@@ -57,96 +59,86 @@ export const ComparePopup = () => {
 				wy: null,
 				wz: null,
 				dt: null,
-				duration: null,
+				time: null,
 			})
 		}
 	}
 
+	const inputArr = useMemo(() => {
+		return [
+			{
+				name: 'a',
+				title: 'a',
+				value: comArguments.a,
+				placeholder: 'length (m)',
+			},
+			{
+				name: 'b',
+				title: 'b',
+				value: comArguments.b,
+				placeholder: 'width (m)',
+			},
+			{
+				name: 'c',
+				title: 'c',
+				value: comArguments.c,
+				placeholder: 'height (m)',
+			},
+			{
+				name: 'm',
+				title: 'm',
+				value: comArguments.m,
+				placeholder: 'mass (kg)',
+			},
+			{
+				name: 'wx',
+				title: 'wx',
+				value: comArguments.wx,
+				placeholder: 'wx (rad/s)',
+			},
+			{
+				name: 'wy',
+				title: 'wy',
+				value: comArguments.wy,
+				placeholder: 'wy (rad/s)',
+			},
+			{
+				name: 'wz',
+				title: 'wz',
+				value: comArguments.wz,
+				placeholder: 'wz (rad/s)',
+			},
+			{
+				name: 'dt',
+				title: 'dt',
+				value: comArguments.dt,
+				placeholder: 'dt (s)',
+			},
+			{
+				name: 'time',
+				title: 't',
+				value: comArguments.time,
+				placeholder: 'time (s)',
+			},
+		]
+	}, [comArguments])
+
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className='absolute top-12 left-12 flex flex-col gap-2 bg-white rounded-2xl p-3 shadow-md shadow-[#424141] z-50'>
-				<div className='flex gap-2'>
-					<input
-						onChange={handleChange}
-						name='a'
-						value={comArguments.a}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='length (m)'
-						type='string'
-					/>
-					<input
-						onChange={handleChange}
-						name='b'
-						value={comArguments.b}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='width (m)'
-						type='string'
-					/>
-				</div>
-				<div className='flex gap-2'>
-					<input
-						onChange={handleChange}
-						name='c'
-						value={comArguments.c}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='height (m)'
-						type='string'
-					/>
-					<input
-						onChange={handleChange}
-						name='wx'
-						value={comArguments.wx}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='wx'
-						type='string'
-					/>
-				</div>
-				<div className='flex gap-2'>
-					<input
-						onChange={handleChange}
-						name='wy'
-						value={comArguments.wy}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='wy'
-						type='string'
-					/>
-					<input
-						onChange={handleChange}
-						name='wz'
-						value={comArguments.wz}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='wz'
-						type='string'
-					/>
-				</div>
-				<div className='flex gap-2'>
-					<input
-						onChange={handleChange}
-						name='m'
-						value={comArguments.m}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='mass (kg)'
-						type='string'
-					/>
-					<input
-						onChange={handleChange}
-						name='dt'
-						value={comArguments.dt}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='dt (s)'
-						type='string'
-					/>
-				</div>
-				<div className='flex justify-center'>
-					<input
-						onChange={handleChange}
-						name='duration'
-						value={comArguments.duration}
-						className='p-2 border border-black rounded-lg w-28'
-						placeholder='duration (s)'
-						type='string'
-					/>
-				</div>
+			<div className='absolute top-12 left-12 grid grid-cols-2 gap-4 bg-white rounded-2xl p-3 shadow-md shadow-[#424141] z-50 text-center justify-center pt-14'>
+				<h1 className='text-2xl absolute top-2 left-[41%]'>Data:</h1>
+				{inputArr.map((item, i) => {
+					return (
+						<InputData
+							key={i}
+							title={item.title}
+							handleChange={handleChange}
+							name={item.name}
+							placeholder={item.placeholder}
+							value={item.value}
+						/>
+					)
+				})}
 				<button className='bg-[#08ABF1] p-2 rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer absolute right-2 bottom-2 shadow-sm shadow-black hover:bg-[#0794d0]'>
 					<Check />
 				</button>

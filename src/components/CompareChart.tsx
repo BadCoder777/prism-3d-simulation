@@ -32,7 +32,7 @@ export const CompareChart = () => {
 			},
 			scales: {
 				x: { time: false },
-				y: { range: [-100, 100] },
+				y: { range: [-150, 150] },
 			},
 			series: [
 				{},
@@ -79,14 +79,14 @@ export const CompareChart = () => {
 				// @ts-ignore
 				args.dt,
 				// @ts-ignore
-				args.duration
+				args.time
 			),
 			compareChartRef.current
 		)
-	}, [])
+	}, [args, I_x, I_y, I_z])
 
 	return (
-		<div className='bg-[#E9E8EF] rounded-3xl h-[34%] w-[31%]'>
+		<div className='bg-[#E9E8EF] rounded-3xl w-[40%] pb-5'>
 			<div ref={compareChartRef}></div>
 		</div>
 	)

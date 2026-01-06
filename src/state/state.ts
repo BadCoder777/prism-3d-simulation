@@ -19,5 +19,5 @@ export const compareArguments = atom({
 	wy: '',
 	wz: '',
 	dt: '',
-	duration: '',
+	time: '',
 })

@@ -75,8 +75,8 @@ export const Chart = ({ data }: IData) => {
 	return (
 		<div
 			className={`${
-				isComChartOpen ? 'w-[69%]' : 'w-full'
-			} bg-[#E9E8EF] rounded-3xl h-[34%] w-full`}
+				isComChartOpen ? 'w-[57%]' : 'w-full left-6'
+			} bg-[#E9E8EF] rounded-3xl h-[34%] w-full absolute right-6`}
 		>
 			<div ref={chartRef}></div>
 		</div>
