@@ -58,13 +58,13 @@ export const FileUploader = () => {
 			<div
 				className={`${
 					isOpen ? '' : 'hidden'
-				} h-12 rounded-lg bg-[#08ABF1] w-32 z-50 flex justify-center items-center cursor-pointer transition-all hover:bg-[#0794d0]`}
+				} h-12 rounded-lg bg-[#08ABF1] w-32 z-50 flex justify-center items-center cursor-pointer transition-all hover:bg-[#0794d0] xl:w-28 xl:h-9`}
 				{...getRootProps()}
 			>
 				<input {...getInputProps()} />
 				<div className='flex justify-center items-center gap-2'>
-					<h2 className='font-medium text-xl'>Add</h2>
-					<CirclePlus />
+					<h2 className='font-medium text-xl xl:text-lg'>Add</h2>
+					<CirclePlus className='xl:w-5 xl:h-5' />
 				</div>
 			</div>
 		</>

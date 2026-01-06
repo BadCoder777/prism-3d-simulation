@@ -25,7 +25,7 @@ export const ControlPanel = () => {
 	const inputRef = useRef(null)
 
 	return (
-		<div className='flex h-12 gap-4 absolute bg-white rounded-xl z-50 bottom-3 left-[40%]'>
+		<div className='flex h-12 gap-4 absolute bg-white rounded-xl z-50 bottom-3 left-[40%] xl:h-9'>
 			<div className='transition-all flex p-2 justify-center items-center gap-1'>
 				<div
 					className='transition-all hover:bg-[#E9E8EF] p-2 rounded-lg cursor-pointer'
@@ -33,7 +33,7 @@ export const ControlPanel = () => {
 						mixerRef.current.setTime(mixerRef.current.time - 3)
 					}}
 				>
-					<SkipBack />
+					<SkipBack className='xl:h-5 xl:w-5' />
 				</div>
 				<div
 					className='transition-all hover:bg-[#E9E8EF] p-2 rounded-lg cursor-pointer'
@@ -45,7 +45,11 @@ export const ControlPanel = () => {
 						setIsPlayngNow(!isPlayingNow)
 					}}
 				>
-					{isPlayingNow ? <Pause /> : <Play />}
+					{isPlayingNow ? (
+						<Pause className='xl:h-5 xl:w-5' />
+					) : (
+						<Play className='xl:h-5 xl:w-5' />
+					)}
 				</div>
 				<div
 					className='transition-all hover:bg-[#E9E8EF] p-2 rounded-lg cursor-pointer'
@@ -53,7 +57,7 @@ export const ControlPanel = () => {
 						mixerRef.current.setTime(mixerRef.current.time + 3)
 					}}
 				>
-					<SkipForward />
+					<SkipForward className='xl:h-5 xl:w-5' />
 				</div>
 			</div>
 			<div className='transition-all flex gap-2 justify-center items-center'>
@@ -63,7 +67,7 @@ export const ControlPanel = () => {
 						setCurrentSpeed(currentSpeed / 2)
 					}}
 				>
-					<ChevronLeft />
+					<ChevronLeft className='xl:h-5 xl:w-5' />
 				</div>
 				<div className='text-xl'>{currentSpeed}</div>
 				<div
@@ -72,7 +76,7 @@ export const ControlPanel = () => {
 						setCurrentSpeed(currentSpeed * 2)
 					}}
 				>
-					<ChevronRight />
+					<ChevronRight className='xl:h-5 xl:w-5' />
 				</div>
 			</div>
 		</div>

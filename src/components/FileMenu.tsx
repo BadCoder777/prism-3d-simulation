@@ -8,8 +8,8 @@ export const FileMenu = () => {
 	const [currentFile, setCurrentFile] = useAtom(currentPlayingFile)
 
 	return (
-		<div className='absolute right-8 top-6 w-[24%]'>
-			<div className='flex flex-col gap-6 bg-[#E9E8EF] py-6 px-16 mb-3 rounded-xl'>
+		<div className='absolute right-8 top-6 w-[24%] xl:w-[26%]'>
+			<div className='flex flex-col gap-6 bg-[#E9E8EF] py-6 px-16 mb-3 rounded-xl xl:px-10 xl:gap-4'>
 				{keys.map((item, i) => (
 					<div
 						key={i}
@@ -17,7 +17,7 @@ export const FileMenu = () => {
 							currentFile === item
 								? 'border-2 border-black'
 								: 'border-2 border-black/30'
-						} p-5 h-35 rounded-xl bg-white cursor-pointer z-10 text-black text-xl relative overflow-hidden`}
+						} p-5 rounded-xl bg-white cursor-pointer z-10 text-black text-xl relative overflow-hidden xl:text-lg xl:p-3`}
 						onClick={() => {
 							setCurrentFile(item)
 						}}

@@ -94,19 +94,19 @@ export const ComparePopup = () => {
 				name: 'wx',
 				title: 'wx',
 				value: comArguments.wx,
-				placeholder: 'wx (rad/s)',
+				placeholder: 'rad/s',
 			},
 			{
 				name: 'wy',
 				title: 'wy',
 				value: comArguments.wy,
-				placeholder: 'wy (rad/s)',
+				placeholder: 'rad/s',
 			},
 			{
 				name: 'wz',
 				title: 'wz',
 				value: comArguments.wz,
-				placeholder: 'wz (rad/s)',
+				placeholder: 'rad/s',
 			},
 			{
 				name: 'dt',
@@ -125,16 +125,16 @@ export const ComparePopup = () => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className='absolute top-12 left-12 grid grid-cols-2 gap-4 bg-white rounded-2xl p-3 shadow-md shadow-[#424141] z-50 text-center justify-center pt-14'>
+			<div className='absolute top-12 left-12 grid grid-cols-2 gap-4 bg-white rounded-2xl p-3 shadow-md shadow-[#424141] z-50 text-center justify-center pt-14 xl:top-8 xl:left-8'>
 				<button
-					className='z-20 cursor-pointer p-1 rounded-full absolute bg-white right-1 top-1'
+					className='z-20 cursor-pointer p-1 rounded-full absolute bg-white right-1 top-1 xl:h-7 xl:w-7'
 					onClick={() => {
 						setIsOpen(false)
 					}}
 				>
-					<CircleX />
+					<CircleX className='xl:h-5 xl:w-5' />
 				</button>
-				<h1 className='text-2xl absolute top-2 left-[41%]'>Data:</h1>
+				<h1 className='text-2xl absolute top-2 left-[41%] xl:text-xl'>Data:</h1>
 				{inputArr.map((item, i) => {
 					return (
 						<InputData
@@ -147,7 +147,7 @@ export const ComparePopup = () => {
 						/>
 					)
 				})}
-				<button className='bg-[#08ABF1] p-2 rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer absolute right-2 bottom-2 shadow-sm shadow-black hover:bg-[#0794d0]'>
+				<button className='bg-[#08ABF1] p-2 rounded-lg w-8 h-8 flex justify-center items-center cursor-pointer absolute right-2 bottom-2 shadow-sm shadow-black hover:bg-[#0794d0] xl:h-6 xl:w-6 xl:p-1'>
 					<Check />
 				</button>
 			</div>

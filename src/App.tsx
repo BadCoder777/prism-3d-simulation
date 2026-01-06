@@ -61,29 +61,29 @@ export const App = () => {
 			<div className='bg-[#FFFFFF] h-screen p-6'>
 				{isPopup && <ComparePopup />}
 				<FileMenu />
-				<div className='h-[59%] w-[73%] bg-[#E9E8EF] rounded-xl mb-6 shadow-lg relative'>
+				<div className='h-[59%] w-[73%] bg-[#E9E8EF] rounded-xl mb-6 shadow-lg relative xl:w-[71%]'>
 					{currentFile != '' && <PrismScene />}
 					<ControlPanel />
-					<div className='z-40 absolute left-6 bottom-3 flex gap-4'>
+					<div className='z-40 absolute left-6 bottom-3 flex gap-4 xl:left-3 xl:gap-2'>
 						<div
-							className='transition-all w-36 h-12 rounded-full flex justify-center items-center gap-2 cursor-pointer bg-[#08ABF1] hover:bg-[#0794d0]'
+							className='transition-all w-36 h-12 rounded-full flex justify-center items-center gap-2 cursor-pointer bg-[#08ABF1] hover:bg-[#0794d0] xl:w-28 xl:h-9'
 							onClick={() => {
 								setIsPopup(!isPopup)
 							}}
 						>
-							<ChartSpline />
+							<ChartSpline className='xl:w-4 xl:h-4' />
 							<h2>Model</h2>
 						</div>
 						{isArgs && (
 							<div
 								className={`${
 									isChartOpen ? 'bg-[#08ABF1]' : 'bg-white'
-								} transition-all h-12 w-12 rounded-full flex justify-center items-center cursor-pointer`}
+								} transition-all h-12 w-12 rounded-full flex justify-center items-center cursor-pointer xl:h-9 xl:w-9`}
 								onClick={() => {
 									setIsChartOpen(!isChartOpen)
 								}}
 							>
-								{isChartOpen ? <Eye /> : <EyeOff />}
+								{isChartOpen ? <Eye className='xl:h-5 xl:w-5' /> : <EyeOff />}
 							</div>
 						)}
 					</div>
