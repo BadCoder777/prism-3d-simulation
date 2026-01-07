@@ -26,7 +26,6 @@ export const FileMenu = () => {
 						<button
 							className='z-20 cursor-pointer p-1 rounded-full absolute bg-white right-0'
 							onClick={() => {
-								setCurrentFile(null)
 								localStorage.removeItem(item)
 								setKeys(prev => prev.filter(value => value != item))
 							}}
