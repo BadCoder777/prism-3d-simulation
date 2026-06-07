@@ -33,7 +33,7 @@ export const CompareChart = () => {
 			},
 			scales: {
 				x: { time: false },
-				y: { range: [-150, 150] },
+				y: { range: [-100, 100] },
 			},
 			series: [
 				{},
