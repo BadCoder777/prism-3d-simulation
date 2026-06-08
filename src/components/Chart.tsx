@@ -7,81 +7,81 @@ import { converter } from '../utils/dataForChartConverter'
 import { getData } from '../utils/getData'
 
 interface IData {
-	data: number[][]
+  data: number[][]
 }
 
 export const Chart = ({ data }: IData) => {
-	const [currentFile] = useAtom(currentPlayingFile)
+  const [currentFile] = useAtom(currentPlayingFile)
 
-	const [isComChartOpen] = useAtom(isCompareChartOpen)
+  const [isComChartOpen] = useAtom(isCompareChartOpen)
 
-	const uPlotInst = useRef<uPlot | null>(null)
+  const uPlotInst = useRef<uPlot | null>(null)
 
-	const chartRef = useRef<HTMLDivElement>(null)
+  const chartRef = useRef<HTMLDivElement>(null)
 
-	const divRef = useRef<HTMLDivElement>(null)
+  const divRef = useRef<HTMLDivElement>(null)
 
-	useEffect(() => {
-		if (!chartRef.current) return
+  useEffect(() => {
+    if (!chartRef.current) return
 
-		if (uPlotInst.current) uPlotInst.current.destroy()
+    if (uPlotInst.current) uPlotInst.current.destroy()
 
-		const opts: uPlot.Options = {
-			width: chartRef.current.clientWidth,
-			height: divRef.current.clientHeight,
-			cursor: {
-				drag: { x: true, y: false },
-			},
-			scales: {
-				x: { time: false },
-			},
-			series: [
-				{},
-				{
-					label: 'wx',
-					stroke: '#ffe924f0',
-					width: 2,
-				},
-				{
-					label: 'wy',
-					stroke: '#2453ffe8',
-					width: 2,
-				},
-				{
-					label: 'wz',
-					stroke: '#48ff24e8',
-					width: 2,
-				},
-			],
-			axes: [
-				{
-					stroke: '#000000',
-					grid: { stroke: '#aba9a9' },
-				},
-				{
-					stroke: '#000000',
-					grid: { stroke: '#b3b1b1' },
-				},
-			],
-		}
-		// @ts-ignore
-		uPlotInst.current = new uPlot(opts, data, chartRef.current)
-	}, [isComChartOpen])
+    const opts: uPlot.Options = {
+      width: chartRef.current.clientWidth,
+      height: divRef.current.clientHeight,
+      cursor: {
+        drag: { x: true, y: false }
+      },
+      scales: {
+        x: { time: false }
+      },
+      series: [
+        {},
+        {
+          label: 'wx',
+          stroke: '#ffe924f0',
+          width: 2
+        },
+        {
+          label: 'wy',
+          stroke: '#2453ffe8',
+          width: 2
+        },
+        {
+          label: 'wz',
+          stroke: '#48ff24e8',
+          width: 2
+        }
+      ],
+      axes: [
+        {
+          stroke: '#000000',
+          grid: { stroke: '#aba9a9' }
+        },
+        {
+          stroke: '#000000',
+          grid: { stroke: '#b3b1b1' }
+        }
+      ]
+    }
+    // @ts-ignore
+    uPlotInst.current = new uPlot(opts, data, chartRef.current)
+  }, [isComChartOpen])
 
-	useEffect(() => {
-		if (uPlotInst.current) {
-			uPlotInst.current?.setData(converter(getData(currentFile)))
-		}
-	}, [currentFile])
+  useEffect(() => {
+    if (uPlotInst.current) {
+      uPlotInst.current?.setData(converter(getData(currentFile)))
+    }
+  }, [currentFile])
 
-	return (
-		<div
-			ref={divRef}
-			className={`${
-				isComChartOpen ? 'w-[47.5%]' : 'w-[96%] left-6'
-			} bg-[#E9E8EF] h-[37%] rounded-3xl absolute right-6 pb-5`}
-		>
-			<div ref={chartRef}></div>
-		</div>
-	)
+  return (
+    <div
+      ref={divRef}
+      className={`${
+        isComChartOpen ? 'w-[47.5%]' : 'w-[96%] left-6'
+      } bg-[#E9E8EF] h-[35%] rounded-3xl absolute right-6 pb-5`}
+    >
+      <div ref={chartRef}></div>
+    </div>
+  )
 }
