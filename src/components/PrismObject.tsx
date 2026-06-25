@@ -60,15 +60,47 @@ export const PrismObject = () => {
 
 	return (
 		<>
-			<axesHelper args={[10]} />
+			{/* Coordinate Plane Grid (CAD Style) */}
+			<gridHelper args={[40, 40, '#27272a', '#18181b']} position={[0, -4, 0]} />
+			
+			{/* Spatial Axes Reference */}
+			<axesHelper args={[6]} />
+			
+			{/* Balanced lighting for technical surface detail */}
 			<ambientLight intensity={0.5} />
-			<pointLight position={[10, 10, 10]} />
+			<directionalLight 
+				position={[15, 20, 15]} 
+				intensity={2.2} 
+				color='#ffffff'
+			/>
+			<pointLight 
+				position={[-15, -10, -15]} 
+				intensity={1.2} 
+				color='#3b82f6'
+			/>
+
+			{/* Modern Glass Smartphone Model */}
 			<mesh ref={meshRef}>
+				{/* 2x4x0.7 represents mobile phone aspect ratio */}
 				<boxGeometry args={[2, 4, 0.7]} />
-				<meshStandardMaterial color={'#e8fb86'} />
-				<Edges color={'black'} />
+				<meshPhysicalMaterial 
+					color='#1e293b' 
+					transmission={0.4}
+					roughness={0.15}
+					thickness={1.2}
+					ior={1.5}
+					clearcoat={1.0}
+					clearcoatRoughness={0.05}
+					transparent={true}
+					opacity={0.88}
+				/>
+				<Edges 
+					color='#38bdf8' 
+					threshold={15} 
+					lineWidth={2.0}
+				/>
 			</mesh>
-			<OrbitControls />
+			<OrbitControls makeDefault />
 		</>
 	)
 }

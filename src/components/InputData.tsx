@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const InputData = ({
 	handleChange,
 	value,
@@ -6,17 +8,17 @@ export const InputData = ({
 	title,
 }) => {
 	return (
-		<div className='relative'>
-			<h2 className='absolute left-2 top-2 xl:text-sm xl:top-1 xl:left-1.5'>
-				{title}:
-			</h2>
+		<div className='flex items-center justify-between gap-3 text-xs w-full'>
+			<label className='font-mono font-medium text-zinc-400 w-8 select-none'>
+				{title}
+			</label>
 			<input
 				onChange={handleChange}
 				name={name}
 				value={value}
-				className='p-2 border border-black rounded-lg w-32 pl-10 xl:w-24 xl:p-1 xl:text-sm xl:pl-7'
+				className='flex-grow px-2 py-1 bg-zinc-900/50 border border-zinc-800 rounded-lg text-zinc-100 placeholder-zinc-650 focus:border-blue-500/60 focus:outline-none font-mono text-right'
 				placeholder={placeholder}
-				type='string'
+				type='text'
 			/>
 		</div>
 	)

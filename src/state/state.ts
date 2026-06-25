@@ -21,3 +21,8 @@ export const compareArguments = atom({
 	dt: '',
 	time: '',
 })
+
+export const themeAtom = atom<'light' | 'dark'>(
+	(localStorage.getItem('theme') as 'light' | 'dark') || 'dark'
+)
+
