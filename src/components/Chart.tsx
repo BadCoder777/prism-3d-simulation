@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 import uPlot from "uplot";
 import "uplot/dist/uPlot.min.css";
 import { currentPlayingFile, isCompareChartOpen } from "../state/state";
-import { converter } from "../utils/dataForChartConverter";
-import { getData } from "../utils/getData";
+import { converter } from "../utils/converters/dataForChartConverter";
+import { getData } from "../utils/tools/getData";
 
 interface IData {
   data: number[][];

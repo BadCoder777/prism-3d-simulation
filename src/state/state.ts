@@ -133,3 +133,19 @@ export const compareArguments = atom(
     localStorage.setItem("compare_args", JSON.stringify(nextValue));
   },
 );
+
+export type SolverMethod = "Euler" | "RK-45";
+
+const initialSolverMethod =
+  (localStorage.getItem("solver_method") as SolverMethod) || "Euler";
+const baseSolverMethod = atom<SolverMethod>(initialSolverMethod);
+
+export const solverMethod = atom(
+  (get) => get(baseSolverMethod),
+  (get, set, update) => {
+    const nextValue =
+      typeof update === "function" ? update(get(baseSolverMethod)) : update;
+    set(baseSolverMethod, nextValue);
+    localStorage.setItem("solver_method", nextValue);
+  },
+);

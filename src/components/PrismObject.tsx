@@ -5,8 +5,8 @@ import { useContext, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { AnimationContext } from "../context/animation-context";
 import { animationDuration, currentPlayingFile, speed } from "../state/state";
-import { getData } from "../utils/getData";
-import { converter } from "../utils/wAngleConverter";
+import { getData } from "../utils/tools/getData";
+import { converter } from "../utils/converters/wAngleConverter";
 
 export const PrismObject = () => {
   const [speedIndex] = useAtom(speed);

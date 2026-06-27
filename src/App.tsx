@@ -12,8 +12,8 @@ import {
   currentPlayingFile,
   isCompareChartOpen,
 } from "./state/state";
-import { converter } from "./utils/dataForChartConverter";
-import { getData } from "./utils/getData";
+import { converter } from "./utils/converters/dataForChartConverter";
+import { getData } from "./utils/tools/getData";
 
 export const App = () => {
   const [chartArgs] = useAtom(chartArguments);

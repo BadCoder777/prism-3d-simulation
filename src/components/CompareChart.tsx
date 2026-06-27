@@ -2,13 +2,18 @@ import { useAtom } from "jotai";
 import { useEffect, useMemo, useRef } from "react";
 import uPlot from "uplot";
 import "uplot/dist/uPlot.min.css";
-import { chartArguments, currentPlayingFile } from "../state/state";
-import { calcIMoments } from "../utils/calcIMoments";
-import { eulerSolver } from "../utils/eulerSolver";
+import {
+  chartArguments,
+  currentPlayingFile,
+  solverMethod,
+} from "../state/state";
+import { calcIMoments } from "../utils/physics-impl/calcIMoments";
+import { eulerSolver } from "../utils/physics-impl/eulerSolver";
 
 export const CompareChart = () => {
   const [currentFile] = useAtom(currentPlayingFile);
   const [args] = useAtom(chartArguments);
+  const [method] = useAtom(solverMethod);
 
   const myDivRef = useRef<HTMLDivElement>(null);
   const compareChartRef = useRef<HTMLDivElement>(null);
@@ -122,7 +127,7 @@ export const CompareChart = () => {
       className="flex-1 min-w-0 bg-[#3c3836]/60 backdrop-blur-xl border border-[#504945]/60 rounded-2xl p-4 shadow-2xl flex flex-col h-full"
     >
       <div className="text-[10px] font-bold tracking-wider uppercase text-[#bdae93] select-none pb-1.5 border-b border-[#504945]/50 mb-2">
-        Theoretical Euler Model Plot
+        Theoretical {method} Model Plot
       </div>
       <div ref={compareChartRef} className="w-full flex-grow min-h-0"></div>
     </div>

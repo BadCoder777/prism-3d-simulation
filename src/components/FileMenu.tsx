@@ -1,12 +1,14 @@
 import { useAtom } from 'jotai'
-import { Trash2, Play } from 'lucide-react'
-import { useMemo } from 'react'
+import { Trash2, Play, ChevronDown, Check } from 'lucide-react'
+import { useMemo, useState, useRef, useEffect } from 'react'
 import {
 	chartArguments,
 	compareArguments,
 	currentPlayingFile,
 	isCompareChartOpen,
 	keyList,
+	solverMethod,
+	type SolverMethod,
 } from '../state/state'
 import { FileUploader } from './FileUploader'
 import { InputData } from './InputData'
@@ -18,6 +20,20 @@ export const FileMenu = () => {
 	const [comArguments, setArguments] = useAtom(compareArguments)
 	const [, setChartArgs] = useAtom(chartArguments)
 	const [isChartOpen, setIsChartOpen] = useAtom(isCompareChartOpen)
+	const [method, setMethod] = useAtom(solverMethod)
+
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const dropdownRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+				setIsDropdownOpen(false)
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside)
+		return () => document.removeEventListener('mousedown', handleClickOutside)
+	}, [])
 
 	const handleChange = e => {
 		const { name, value } = e.target
@@ -108,13 +124,60 @@ export const FileMenu = () => {
 							))}
 						</div>
 						
-						<button
-							type='submit'
-							className='comfortable-transition w-full mt-1.5 py-1.5 bg-[#fe8019] hover:bg-[#d65d0e] text-[#282828] rounded-lg text-xs font-bold tracking-wide flex items-center justify-center gap-1.5 shadow-md shadow-[#fe8019]/10 cursor-pointer'
-						>
-							<Play className='w-3 h-3 fill-current' />
-							<span>Solve Euler Model</span>
-						</button>
+						{/* Split Button with Solver Algorithm Dropdown Menu */}
+						<div className='relative w-full mt-1.5' ref={dropdownRef}>
+							<div className='flex items-stretch w-full rounded-lg overflow-hidden shadow-md shadow-[#fe8019]/10'>
+								<button
+									type='submit'
+									className='comfortable-transition flex-grow py-1.5 px-3 bg-[#fe8019] hover:bg-[#d65d0e] text-[#282828] text-xs font-bold tracking-wide flex items-center justify-center gap-1.5 cursor-pointer'
+								>
+									<Play className='w-3 h-3 fill-current' />
+									<span>Solve {method} Model</span>
+								</button>
+								
+								<button
+									type='button'
+									className='comfortable-transition px-2 bg-[#d65d0e] hover:bg-[#b54c0b] text-[#282828] border-l border-[#282828]/20 flex items-center justify-center cursor-pointer'
+									onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+									title='Select Integration Solver Algorithm'
+								>
+									<ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+								</button>
+							</div>
+
+							{/* Modern Floating Menu with Slide & Fade Animations */}
+							<div
+								className={`absolute left-0 right-0 bottom-full mb-1.5 z-50 bg-[#32302f]/95 border border-[#504945] rounded-lg shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-200 ease-out origin-bottom ${
+									isDropdownOpen
+										? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+										: 'opacity-0 translate-y-2 scale-95 pointer-events-none'
+								}`}
+							>
+								<div className='px-3 py-1.5 border-b border-[#504945]/50 text-[9px] font-bold uppercase tracking-wider text-[#a89984]'>
+									Integration Algorithm
+								</div>
+								<div className='p-1 flex flex-col gap-0.5'>
+									{(['Euler', 'RK-45'] as SolverMethod[]).map((m) => (
+										<button
+											key={m}
+											type='button'
+											className={`comfortable-transition w-full px-2.5 py-1.5 rounded-md text-xs font-mono text-left flex items-center justify-between cursor-pointer ${
+												method === m
+													? 'bg-[#504945] text-[#fbf1c7] font-semibold'
+													: 'text-[#bdae93] hover:bg-[#3c3836] hover:text-[#ebdbb2]'
+											}`}
+											onClick={() => {
+												setMethod(m)
+												setIsDropdownOpen(false)
+											}}
+										>
+											<span>{m === 'Euler' ? 'Euler Method' : 'RK-45 Method'}</span>
+											{method === m && <Check className='w-3.5 h-3.5 text-[#fe8019]' />}
+										</button>
+									))}
+								</div>
+							</div>
+						</div>
 					</form>
 				</div>
 				
