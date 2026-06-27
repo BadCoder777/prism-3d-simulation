@@ -8,8 +8,7 @@ import {
   currentPlayingFile,
   solverMethod,
 } from "../state/state";
-import { calcIMoments } from "../utils/physics-impl/calcIMoments";
-import { eulerSolver } from "../utils/physics-impl/eulerSolver";
+import { solve } from "../utils/tools/solve";
 
 export const CompareChart = () => {
   const [currentFile] = useAtom(currentPlayingFile);
@@ -20,30 +19,10 @@ export const CompareChart = () => {
   const compareChartRef = useRef<HTMLDivElement>(null);
   const compareUPlotInst = useRef<uPlot | null>(null);
 
-  const [I_x, I_y, I_z] = useMemo(() => {
-    if (!args) return [0, 0, 0];
-    // @ts-ignore
-    return calcIMoments([args.a, args.b, args.c, args.m]);
-  }, [args]);
-
   const chartData = useMemo(() => {
     if (!args) return [[], [], [], []];
-    return eulerSolver(
-      I_x,
-      I_y,
-      I_z,
-      // @ts-ignore
-      args.wx,
-      // @ts-ignore
-      args.wy,
-      // @ts-ignore
-      args.wz,
-      // @ts-ignore
-      args.dt,
-      // @ts-ignore
-      args.time,
-    );
-  }, [args, I_x, I_y, I_z]);
+    return solve(args, method);
+  }, [args, method]);
 
   useEffect(() => {
     if (!compareChartRef.current || !myDivRef.current || !args) return;

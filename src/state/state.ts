@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { SolvingMethods } from "../types/solvingMethods.type";
 
 const initialCompareArgs = (() => {
   const saved = localStorage.getItem("compare_args");
@@ -35,7 +36,13 @@ const initialChartArgs = (() => {
 })();
 
 export const getDatasetKeys = (): string[] => {
-  const reserved = ["compare_args", "chart_args", "is_compare_chart_open", "theme", "current_playing_file"];
+  const reserved = [
+    "compare_args",
+    "chart_args",
+    "is_compare_chart_open",
+    "theme",
+    "current_playing_file",
+  ];
   return Object.keys(localStorage).filter((key) => {
     if (reserved.includes(key)) return false;
     try {
@@ -134,11 +141,10 @@ export const compareArguments = atom(
   },
 );
 
-export type SolverMethod = "Euler" | "RK-45";
-
 const initialSolverMethod =
-  (localStorage.getItem("solver_method") as SolverMethod) || "Euler";
-const baseSolverMethod = atom<SolverMethod>(initialSolverMethod);
+  (localStorage.getItem("solver_method") as SolvingMethods) ||
+  SolvingMethods.RK_4;
+const baseSolverMethod = atom<SolvingMethods>(initialSolverMethod);
 
 export const solverMethod = atom(
   (get) => get(baseSolverMethod),
