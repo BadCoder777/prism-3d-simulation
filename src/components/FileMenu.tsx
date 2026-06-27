@@ -83,13 +83,13 @@ export const FileMenu = () => {
 	}, [comArguments])
 
 	return (
-		<div className='w-80 h-full flex flex-col justify-between bg-[#121625]/40 backdrop-blur-xl border border-white/5 rounded-2xl p-4 shadow-2xl flex-shrink-0 select-none transition-all duration-300 xl:w-72'>
+		<div className='w-80 h-full flex flex-col justify-between bg-[#3c3836]/60 backdrop-blur-xl border border-[#504945]/60 rounded-2xl p-4 shadow-2xl flex-shrink-0 select-none transition-all duration-300 xl:w-72'>
 			
 			<div className='flex-grow min-h-0 flex flex-col'>
 				{/* Section 1: Parameters */}
-				<div className='pb-3.5 mb-3.5 border-b border-zinc-850/50 flex flex-col gap-2.5'>
-					<div className='flex items-center justify-between pb-1 border-b border-zinc-900'>
-						<h2 className='text-[10px] font-bold tracking-wider uppercase text-zinc-500'>
+				<div className='pb-3.5 mb-3.5 border-b border-[#504945]/50 flex flex-col gap-2.5'>
+					<div className='flex items-center justify-between pb-1 border-b border-[#504945]'>
+						<h2 className='text-[10px] font-bold tracking-wider uppercase text-[#bdae93]'>
 							Model Parameters
 						</h2>
 					</div>
@@ -110,7 +110,7 @@ export const FileMenu = () => {
 						
 						<button
 							type='submit'
-							className='comfortable-transition w-full mt-1.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/10 hover:shadow-blue-500/20 cursor-pointer'
+							className='comfortable-transition w-full mt-1.5 py-1.5 bg-[#fe8019] hover:bg-[#d65d0e] text-[#282828] rounded-lg text-xs font-bold tracking-wide flex items-center justify-center gap-1.5 shadow-md shadow-[#fe8019]/10 cursor-pointer'
 						>
 							<Play className='w-3 h-3 fill-current' />
 							<span>Solve Euler Model</span>
@@ -120,8 +120,8 @@ export const FileMenu = () => {
 				
 				{/* Section 2: Datasets */}
 				<div className='flex-grow min-h-0 flex flex-col gap-2.5'>
-					<div className='flex items-center justify-between pb-1 border-b border-zinc-900'>
-						<h2 className='text-[10px] font-bold tracking-wider uppercase text-zinc-500'>
+					<div className='flex items-center justify-between pb-1 border-b border-[#504945]'>
+						<h2 className='text-[10px] font-bold tracking-wider uppercase text-[#bdae93]'>
 							Sensor Datasets
 						</h2>
 					</div>
@@ -134,8 +134,8 @@ export const FileMenu = () => {
 									<button
 										className={`comfortable-transition text-left w-full px-3 py-2 rounded-lg text-xs font-mono border relative overflow-hidden flex-1 ${
 											currentFile === item 
-												? 'bg-zinc-800/80 border-zinc-700 text-zinc-100 font-medium' 
-												: 'bg-zinc-900/30 border-zinc-850 text-zinc-400 hover:bg-zinc-900/50 hover:text-zinc-200'
+												? 'bg-[#504945] border-[#7c6f64] text-[#fbf1c7] font-medium' 
+												: 'bg-[#32302f]/60 border-[#504945]/50 text-[#bdae93] hover:bg-[#3c3836] hover:text-[#ebdbb2]'
 										}`}
 										onClick={() => {
 											setCurrentFile(item)
@@ -147,7 +147,7 @@ export const FileMenu = () => {
 									</button>
 									
 									<button
-										className='comfortable-transition p-2 rounded-lg border border-transparent bg-zinc-900/30 text-zinc-550 hover:text-red-400 hover:bg-red-950/20 cursor-pointer'
+										className='comfortable-transition p-2 rounded-lg border border-transparent bg-[#32302f]/40 text-[#a89984] hover:text-[#fb4934] hover:bg-[#fb4934]/15 cursor-pointer'
 										onClick={(e) => {
 											e.stopPropagation()
 											localStorage.removeItem(item)
@@ -163,10 +163,10 @@ export const FileMenu = () => {
 								</div>
 							))
 						) : (
-							<div className='flex flex-col items-center justify-center py-6 text-center text-zinc-500 gap-1.5'>
+							<div className='flex flex-col items-center justify-center py-6 text-center text-[#a89984] gap-1.5'>
 								<span className='text-lg'>📊</span>
-								<p className='text-[9px] font-bold uppercase tracking-wider'>No datasets loaded</p>
-								<p className='text-[9px] text-zinc-600 px-2 leading-relaxed'>
+								<p className='text-[9px] font-bold uppercase tracking-wider text-[#bdae93]'>No datasets loaded</p>
+								<p className='text-[9px] text-[#a89984] px-2 leading-relaxed'>
 									Upload a CSV file to begin telemetry simulation.
 								</p>
 							</div>
@@ -176,7 +176,7 @@ export const FileMenu = () => {
 			</div>
 
 			{/* Integrated Drag & Drop Uploader */}
-			<div className='pt-3 border-t border-zinc-850/50'>
+			<div className='pt-3 border-t border-[#504945]/50'>
 				<FileUploader />
 			</div>
 		</div>

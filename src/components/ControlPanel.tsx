@@ -25,14 +25,14 @@ export const ControlPanel = () => {
 	const inputRef = useRef(null)
 
 	return (
-		<div className='absolute bottom-4 left-1/2 -translate-x-1/2 h-11 bg-[#121625]/90 backdrop-blur-md border border-zinc-800 px-4 rounded-xl flex items-center justify-between gap-5 z-40 select-none shadow-lg shadow-black/30'>
+		<div className='absolute bottom-4 left-1/2 -translate-x-1/2 h-11 bg-[#3c3836]/95 backdrop-blur-md border border-[#504945] px-4 rounded-xl flex items-center justify-between gap-5 z-40 select-none shadow-lg shadow-black/30'>
 			
 			{/* Timecode / Source Indicator */}
-			<div className='flex items-center gap-2 text-[10px] font-mono text-zinc-500 border-r border-zinc-800/80 pr-4 h-5'>
-				<span className='font-bold uppercase tracking-wider text-zinc-400'>
+			<div className='flex items-center gap-2 text-[10px] font-mono text-[#a89984] border-r border-[#504945]/80 pr-4 h-5'>
+				<span className='font-bold uppercase tracking-wider text-[#bdae93]'>
 					File:
 				</span>
-				<span className='text-zinc-350 truncate max-w-[120px] font-medium' title={currentFile}>
+				<span className='text-[#ebdbb2] truncate max-w-[120px] font-medium' title={currentFile}>
 					{currentFile}
 				</span>
 			</div>
@@ -40,7 +40,7 @@ export const ControlPanel = () => {
 			{/* Timeline Controls */}
 			<div className='flex items-center gap-1.5'>
 				<button
-					className='comfortable-transition p-1.5 rounded-lg hover:bg-zinc-800/60 hover:text-zinc-100 text-zinc-400 cursor-pointer'
+					className='comfortable-transition p-1.5 rounded-lg hover:bg-[#504945] hover:text-[#fbf1c7] text-[#a89984] cursor-pointer'
 					onClick={() => {
 						if (mixerRef.current) {
 							mixerRef.current.setTime(mixerRef.current.time - 3)
@@ -52,7 +52,7 @@ export const ControlPanel = () => {
 				</button>
 				
 				<button
-					className='comfortable-transition p-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white cursor-pointer shadow-sm'
+					className='comfortable-transition p-1.5 rounded-lg bg-[#83a598] hover:bg-[#458588] text-[#1d2021] cursor-pointer shadow-sm'
 					onClick={() => {
 						if (mixerRef.current) {
 							// @ts-ignore
@@ -72,7 +72,7 @@ export const ControlPanel = () => {
 				</button>
 				
 				<button
-					className='comfortable-transition p-1.5 rounded-lg hover:bg-zinc-800/60 hover:text-zinc-100 text-zinc-400 cursor-pointer'
+					className='comfortable-transition p-1.5 rounded-lg hover:bg-[#504945] hover:text-[#fbf1c7] text-[#a89984] cursor-pointer'
 					onClick={() => {
 						if (mixerRef.current) {
 							mixerRef.current.setTime(mixerRef.current.time + 3)
@@ -85,13 +85,13 @@ export const ControlPanel = () => {
 			</div>
 			
 			{/* Speed Rate controls */}
-			<div className='flex items-center gap-2 text-xs border-l border-zinc-800/80 pl-4 h-5'>
-				<span className='text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500'>
+			<div className='flex items-center gap-2 text-xs border-l border-[#504945]/80 pl-4 h-5'>
+				<span className='text-[10px] font-mono font-bold uppercase tracking-wider text-[#a89984]'>
 					Rate:
 				</span>
-				<div className='flex items-center gap-1 bg-zinc-950/60 border border-zinc-800/80 rounded-lg px-1.5 py-0.5'>
+				<div className='flex items-center gap-1 bg-[#282828] border border-[#504945] rounded-lg px-1.5 py-0.5'>
 					<button
-						className='text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors duration-75'
+						className='text-[#a89984] hover:text-[#fbf1c7] cursor-pointer transition-colors duration-75'
 						onClick={() => {
 							setCurrentSpeed(currentSpeed / 2)
 						}}
@@ -100,12 +100,12 @@ export const ControlPanel = () => {
 						<ChevronLeft className='w-3.5 h-3.5' />
 					</button>
 					
-					<span className='font-mono font-semibold text-[10px] text-zinc-300 min-w-[28px] text-center'>
+					<span className='font-mono font-semibold text-[10px] text-[#ebdbb2] min-w-[28px] text-center'>
 						{currentSpeed}x
 					</span>
 					
 					<button
-						className='text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors duration-75'
+						className='text-[#a89984] hover:text-[#fbf1c7] cursor-pointer transition-colors duration-75'
 						onClick={() => {
 							setCurrentSpeed(currentSpeed * 2)
 						}}

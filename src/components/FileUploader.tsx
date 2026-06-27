@@ -59,19 +59,19 @@ export const FileUploader = () => {
 		<div
 			className={`comfortable-transition w-full p-3 border border-dashed rounded-lg text-center cursor-pointer ${
 				isDragActive
-					? 'border-blue-500 bg-blue-500/5'
-					: 'border-zinc-800 hover:border-zinc-700 bg-zinc-900/10 hover:bg-zinc-900/30'
+					? 'border-[#fe8019] bg-[#fe8019]/10'
+					: 'border-[#504945] hover:border-[#7c6f64] bg-[#282828]/30 hover:bg-[#32302f]/60'
 			}`}
 			{...getRootProps()}
 		>
 			<input {...getInputProps()} />
 			<div className='flex flex-col items-center gap-1.5'>
-				<Upload className='w-4 h-4 text-zinc-500' />
+				<Upload className='w-4 h-4 text-[#a89984]' />
 				<div>
-					<p className='text-[10px] font-bold text-zinc-300 uppercase tracking-wider'>
+					<p className='text-[10px] font-bold text-[#ebdbb2] uppercase tracking-wider'>
 						Import CSV
 					</p>
-					<p className='text-[9px] text-zinc-500 mt-0.5 font-mono'>
+					<p className='text-[9px] text-[#a89984] mt-0.5 font-mono'>
 						Drag & drop file or click
 					</p>
 				</div>
