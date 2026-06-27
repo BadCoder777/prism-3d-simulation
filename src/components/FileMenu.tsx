@@ -163,7 +163,7 @@ export const FileMenu = () => {
 											type='button'
 											className={`comfortable-transition w-full px-2.5 py-1.5 rounded-md text-xs font-mono text-left flex items-center justify-between cursor-pointer ${
 												method === m
-													? 'bg-[#504945] text-[#fbf1c7] font-semibold'
+													? 'bg-[#504945] text-[#ebdbb2] font-semibold'
 													: 'text-[#bdae93] hover:bg-[#3c3836] hover:text-[#ebdbb2]'
 											}`}
 											onClick={() => {
@@ -197,7 +197,7 @@ export const FileMenu = () => {
 									<button
 										className={`comfortable-transition text-left w-full px-3 py-2 rounded-lg text-xs font-mono border relative overflow-hidden flex-1 ${
 											currentFile === item 
-												? 'bg-[#504945] border-[#7c6f64] text-[#fbf1c7] font-medium' 
+												? 'bg-[#504945] border-[#7c6f64] text-[#ebdbb2] font-medium' 
 												: 'bg-[#32302f]/60 border-[#504945]/50 text-[#bdae93] hover:bg-[#3c3836] hover:text-[#ebdbb2]'
 										}`}
 										onClick={() => {

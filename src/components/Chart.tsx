@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 import uPlot from "uplot";
 import "uplot/dist/uPlot.min.css";
+import { GRUVBOX_COLORS } from "../constants/colors";
 import { currentPlayingFile, isCompareChartOpen } from "../state/state";
 import { converter } from "../utils/converters/dataForChartConverter";
 import { getData } from "../utils/tools/getData";
@@ -23,11 +24,11 @@ export const Chart = ({ data }: IData) => {
 
     if (uPlotInst.current) uPlotInst.current.destroy();
 
-    const axisColor = "#a89984";
-    const gridColor = "rgba(124, 111, 100, 0.15)";
-    const strokeX = "#fb4934";
-    const strokeY = "#83a598";
-    const strokeZ = "#b8bb26";
+    const axisColor = GRUVBOX_COLORS.chartAxis;
+    const gridColor = GRUVBOX_COLORS.chartGrid;
+    const strokeX = GRUVBOX_COLORS.chartTraceX;
+    const strokeY = GRUVBOX_COLORS.chartTraceY;
+    const strokeZ = GRUVBOX_COLORS.chartTraceZ;
 
     const opts: uPlot.Options = {
       width: chartRef.current.clientWidth || 300,

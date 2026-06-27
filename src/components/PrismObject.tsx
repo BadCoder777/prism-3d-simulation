@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useAtom } from "jotai";
 import { useContext, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { GRUVBOX_COLORS } from "../constants/colors";
 import { AnimationContext } from "../context/animation-context";
 import { animationDuration, currentPlayingFile, speed } from "../state/state";
 import { getData } from "../utils/tools/getData";
@@ -61,7 +62,7 @@ export const PrismObject = () => {
   return (
     <>
       {/* Coordinate Plane Grid (Gruvbox Style) */}
-      <gridHelper args={[40, 40, "#665c54", "#3c3836"]} position={[0, -4, 0]} />
+      <gridHelper args={[40, 40, GRUVBOX_COLORS.gridMajor, GRUVBOX_COLORS.gridMinor]} position={[0, -4, 0]} />
 
       {/* Spatial Axes Reference */}
       <axesHelper args={[6]} />
@@ -71,16 +72,16 @@ export const PrismObject = () => {
       <directionalLight
         position={[15, 20, 15]}
         intensity={2.2}
-        color="#fbf1c7"
+        color={GRUVBOX_COLORS.textBright}
       />
-      <pointLight position={[-15, -10, -15]} intensity={1.5} color="#fe8019" />
+      <pointLight position={[-15, -10, -15]} intensity={1.5} color={GRUVBOX_COLORS.primary} />
 
       {/* Modern Glass Smartphone Model */}
       <mesh ref={meshRef}>
         {/* 2x4x0.7 represents mobile phone aspect ratio */}
         <boxGeometry args={[2, 4, 0.7]} />
         <meshPhysicalMaterial
-          color="#3c3836"
+          color={GRUVBOX_COLORS.bgPanelSolid}
           transmission={0.3}
           roughness={0.2}
           thickness={1.2}
@@ -90,7 +91,7 @@ export const PrismObject = () => {
           transparent={true}
           opacity={0.9}
         />
-        <Edges color="#fe8019" threshold={15} lineWidth={2.0} />
+        <Edges color={GRUVBOX_COLORS.primary} threshold={15} lineWidth={2.0} />
       </mesh>
       <OrbitControls makeDefault />
     </>

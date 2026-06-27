@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import type { Data } from '../types/data.type'
+import type { Data } from '../../types/data.type'
 
 export const converter = (data: Data, deadZone = 0.05) => {
 	if (!data || data.length === 0) return { times: [], values: [] }
