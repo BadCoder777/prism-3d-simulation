@@ -12,10 +12,14 @@ interface IData {
   wy: number;
   wz: number;
   dt: number;
-  T: number;
+  time?: number;
+  T?: number;
 }
 
 export const solve = (data: IData, method: SolvingMethods) => {
+  if (!data) return [[], [], [], []];
+  const totalTime = data.T ?? data.time ?? 0;
+  
   if (method === SolvingMethods.EULER) {
     const [I_x, I_y, I_z] = calcIMoments([data.a, data.b, data.c, data.m]);
     return eulerSolver(
@@ -26,10 +30,10 @@ export const solve = (data: IData, method: SolvingMethods) => {
       data.wy,
       data.wz,
       data.dt,
-      data.T,
+      totalTime,
     );
-  } else if (method === SolvingMethods.RK_4) {
+  } else {
     const [I_x, I_y, I_z] = calcIMoments([data.a, data.b, data.c, data.m]);
-    return rk4Solver(I_x, I_y, I_z, data.wx, data.wy, data.wz, data.dt, data.T);
+    return rk4Solver(I_x, I_y, I_z, data.wx, data.wy, data.wz, data.dt, totalTime);
   }
 };

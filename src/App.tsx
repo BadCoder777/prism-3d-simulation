@@ -20,25 +20,25 @@ export const App = () => {
   const [isChartOpen, setIsChartOpen] = useAtom(isCompareChartOpen);
 
   const isArgs =
-    chartArgs &&
+    Boolean(chartArgs) &&
     // @ts-ignore
-    chartArgs.a &&
+    chartArgs.a !== null && chartArgs.a !== undefined &&
     // @ts-ignore
-    chartArgs.b &&
+    chartArgs.b !== null && chartArgs.b !== undefined &&
     // @ts-ignore
-    chartArgs.c &&
+    chartArgs.c !== null && chartArgs.c !== undefined &&
     // @ts-ignore
-    chartArgs.m &&
+    chartArgs.m !== null && chartArgs.m !== undefined &&
     // @ts-ignore
-    chartArgs.wx &&
+    chartArgs.wx !== null && chartArgs.wx !== undefined &&
     // @ts-ignore
-    chartArgs.wy &&
+    chartArgs.wy !== null && chartArgs.wy !== undefined &&
     // @ts-ignore
-    chartArgs.wz &&
+    chartArgs.wz !== null && chartArgs.wz !== undefined &&
     // @ts-ignore
-    chartArgs.dt &&
+    chartArgs.dt !== null && chartArgs.dt !== undefined &&
     // @ts-ignore
-    chartArgs.time;
+    (chartArgs.time !== null || chartArgs.T !== null);
 
   const [currentFile] = useAtom(currentPlayingFile);
   const file = useMemo(() => {

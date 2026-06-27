@@ -70,6 +70,7 @@ export const FileMenu = () => {
         wz: +comArguments.wz,
         dt: +comArguments.dt,
         time: +comArguments.time,
+        T: +comArguments.time,
       });
       setIsChartOpen(true);
     } else {
@@ -83,6 +84,7 @@ export const FileMenu = () => {
         wz: null,
         dt: null,
         time: null,
+        T: null,
       });
     }
   };

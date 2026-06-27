@@ -43,7 +43,6 @@ export const CompareChart = () => {
       },
       scales: {
         x: { time: false },
-        y: { range: [-100, 100] },
       },
       series: [
         {},
