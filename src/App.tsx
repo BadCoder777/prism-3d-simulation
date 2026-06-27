@@ -11,13 +11,11 @@ import {
   chartArguments,
   currentPlayingFile,
   isCompareChartOpen,
-  keyList,
 } from "./state/state";
 import { converter } from "./utils/dataForChartConverter";
 import { getData } from "./utils/getData";
 
 export const App = () => {
-  const [, setList] = useAtom(keyList);
   const [chartArgs] = useAtom(chartArguments);
   const [isChartOpen, setIsChartOpen] = useAtom(isCompareChartOpen);
 

@@ -34,12 +34,62 @@ const initialChartArgs = (() => {
   return undefined;
 })();
 
+export const getDatasetKeys = (): string[] => {
+  const reserved = ["compare_args", "chart_args", "is_compare_chart_open", "theme", "current_playing_file"];
+  return Object.keys(localStorage).filter((key) => {
+    if (reserved.includes(key)) return false;
+    try {
+      const item = localStorage.getItem(key);
+      if (!item) return false;
+      const parsed = JSON.parse(item);
+      return parsed && typeof parsed === "object" && "data" in parsed;
+    } catch (e) {
+      return false;
+    }
+  });
+};
+
+const initialCurrentPlayingFile = (() => {
+  const saved = localStorage.getItem("current_playing_file");
+  const availableKeys = getDatasetKeys();
+  if (saved && availableKeys.includes(saved)) {
+    return saved;
+  }
+  return availableKeys.length > 0 ? availableKeys[0] : "";
+})();
+
 export const isOpenDropZone = atom(true);
 export const speed = atom(1);
 export const simTime = atom(0);
 export const isPlaying = atom(true);
-export const currentPlayingFile = atom("");
-export const keyList = atom([]);
+
+const baseCurrentPlayingFile = atom<string>(initialCurrentPlayingFile);
+export const currentPlayingFile = atom(
+  (get) => get(baseCurrentPlayingFile),
+  (get, set, update) => {
+    const nextValue =
+      typeof update === "function"
+        ? update(get(baseCurrentPlayingFile))
+        : update;
+    set(baseCurrentPlayingFile, nextValue);
+    if (nextValue) {
+      localStorage.setItem("current_playing_file", nextValue);
+    } else {
+      localStorage.removeItem("current_playing_file");
+    }
+  },
+);
+
+const baseKeyList = atom<string[]>(getDatasetKeys());
+export const keyList = atom(
+  (get) => get(baseKeyList),
+  (get, set, update) => {
+    const nextValue =
+      typeof update === "function" ? update(get(baseKeyList)) : update;
+    set(baseKeyList, nextValue);
+  },
+);
+
 export const animationDuration = atom(0);
 export const isComparePopupOpen = atom(false);
 

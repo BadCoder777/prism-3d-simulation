@@ -3,11 +3,12 @@ import { Upload } from 'lucide-react'
 import Papa from 'papaparse'
 import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { isOpenDropZone, keyList } from '../state/state'
+import { currentPlayingFile, getDatasetKeys, isOpenDropZone, keyList } from '../state/state'
 
 export const FileUploader = () => {
 	const [isOpen] = useAtom(isOpenDropZone)
 	const [, setKeys] = useAtom(keyList)
+	const [, setCurrentFile] = useAtom(currentPlayingFile)
 
 	const onDrop = useCallback(
 		(acceptedFiles: File[]) => {
@@ -36,7 +37,8 @@ export const FileUploader = () => {
 						})
 					)
 
-					setKeys(Object.keys(localStorage))
+					setKeys(getDatasetKeys())
+					setCurrentFile(file.name)
 				},
 
 				error: err => {
@@ -44,7 +46,7 @@ export const FileUploader = () => {
 				},
 			})
 		},
-		[setKeys]
+		[setKeys, setCurrentFile]
 	)
 
 	const { getRootProps, getInputProps, isDragActive } = useDropzone({

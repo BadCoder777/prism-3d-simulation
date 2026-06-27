@@ -151,9 +151,10 @@ export const FileMenu = () => {
 										onClick={(e) => {
 											e.stopPropagation()
 											localStorage.removeItem(item)
-											setKeys(prev => prev.filter(value => value !== item))
+											const nextKeys = keys.filter(value => value !== item)
+											setKeys(nextKeys)
 											if (currentFile === item) {
-												setCurrentFile('')
+												setCurrentFile(nextKeys.length > 0 ? nextKeys[0] : '')
 											}
 										}}
 										title='Delete dataset'
