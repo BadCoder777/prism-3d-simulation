@@ -63,12 +63,12 @@ where $I_x, I_y, I_z$ are the principal moments of inertia (computed from the ob
 
 <table>
   <tr>
-    <td align="center"><b>Model Parameters & 3D View</b></td>
+    <td align="center"><b>Home screen</b></td>
     <td align="center"><b>Model vs. Experiment Comparison</b></td>
   </tr>
   <tr>
-    <td><img src="screenshots/3.png" alt="Home screen" width="100%"/></td>
-    <td><img src="screenshots/4.png" alt="Side-by-side model and experiment charts" width="100%"/></td>
+    <td><img src="screenshots/4.png" alt="Home screen" width="100%"/></td>
+    <td><img src="screenshots/3.png" alt="Side-by-side model and experiment charts" width="100%"/></td>
   </tr>
 </table>
 
