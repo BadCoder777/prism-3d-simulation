@@ -22,21 +22,29 @@ export const App = () => {
   const isArgs =
     Boolean(chartArgs) &&
     // @ts-ignore
-    chartArgs.a !== null && chartArgs.a !== undefined &&
+    chartArgs.a !== null &&
+    chartArgs.a !== undefined &&
     // @ts-ignore
-    chartArgs.b !== null && chartArgs.b !== undefined &&
+    chartArgs.b !== null &&
+    chartArgs.b !== undefined &&
     // @ts-ignore
-    chartArgs.c !== null && chartArgs.c !== undefined &&
+    chartArgs.c !== null &&
+    chartArgs.c !== undefined &&
     // @ts-ignore
-    chartArgs.m !== null && chartArgs.m !== undefined &&
+    chartArgs.m !== null &&
+    chartArgs.m !== undefined &&
     // @ts-ignore
-    chartArgs.wx !== null && chartArgs.wx !== undefined &&
+    chartArgs.wx !== null &&
+    chartArgs.wx !== undefined &&
     // @ts-ignore
-    chartArgs.wy !== null && chartArgs.wy !== undefined &&
+    chartArgs.wy !== null &&
+    chartArgs.wy !== undefined &&
     // @ts-ignore
-    chartArgs.wz !== null && chartArgs.wz !== undefined &&
+    chartArgs.wz !== null &&
+    chartArgs.wz !== undefined &&
     // @ts-ignore
-    chartArgs.dt !== null && chartArgs.dt !== undefined &&
+    chartArgs.dt !== null &&
+    chartArgs.dt !== undefined &&
     // @ts-ignore
     (chartArgs.time !== null || chartArgs.T !== null);
 
@@ -54,19 +62,6 @@ export const App = () => {
         <div className="flex-grow min-w-0 flex flex-col gap-4 h-full">
           {/* 3D Viewport Box - Glassmorphism, flex-grow to fill remaining space */}
           <div className="flex-grow min-h-0 relative bg-[#1d2021]/70 backdrop-blur-xl border border-[#504945]/40 rounded-2xl flex flex-col justify-center items-center overflow-hidden shadow-2xl shadow-black/40">
-            {/* Scientific Title Overlay */}
-            <div className="absolute top-5 left-5 z-40 pointer-events-none select-none">
-              <div className="text-xs font-bold uppercase tracking-wider text-[#bdae93] flex items-center gap-2">
-                Prism 3D Simulator
-                <span className="text-[8px] uppercase tracking-normal bg-[#fe8019]/15 text-[#fe8019] border border-[#fe8019]/30 px-1.5 py-0.5 rounded font-mono">
-                  GYPT
-                </span>
-              </div>
-              <div className="text-[9px] text-[#a89984] font-mono mt-0.5">
-                Tennis Racket Theorem & Euler Solver
-              </div>
-            </div>
-
             {currentFile !== "" ? (
               <PrismScene />
             ) : (
@@ -79,8 +74,8 @@ export const App = () => {
                     No Active Telemetry Source
                   </h3>
                   <p className="text-[10px] text-[#a89984] mt-1 leading-relaxed">
-                    Run the Euler model solver or upload a CSV file from the
-                    sidebar to initialize the 3D space.
+                    Run the model solver or upload a CSV file from the sidebar
+                    to initialize the 3D space.
                   </p>
                 </div>
               </div>
